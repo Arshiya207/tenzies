@@ -13,7 +13,7 @@ export default function Timer(props) {
   let bestTime = "";
   if (latestTimeArr) {
     latestTime = latestTimeArr[latestTimeArr.length - 1];
-    bestTime = localStorage.getItem("bestTime") ?? "00:00";
+    bestTime = localStorage.getItem("bestTime")==="" ? "00:00" : localStorage.getItem("bestTime");
   } else {
     latestTime = "00:00";
     bestTime = "00:00";

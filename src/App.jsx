@@ -49,7 +49,7 @@ export default function App() {
       localStorage.getItem("bestTime") ?? localStorage.setItem("bestTime", "");
 
     if (latestTime) {
-      const latestTimeArray = JSON.parse(localStorage.getItem("latestTime"));
+      let latestTimeArray = JSON.parse(localStorage.getItem("latestTime"));
 
       if (bestTime) {
         const bestMin = bestTime.split(":")[0];
@@ -61,8 +61,12 @@ export default function App() {
           localStorage.setItem("latestTime", JSON.stringify(latestTimeArray));
         }
         // removes unneccessery times that has been saved to local storage
-        const lastLatest = [latestTimeArray[latestTimeArray.length - 1]];
-        localStorage.setItem("latestTime", JSON.stringify(lastLatest));
+        localStorage.setItem("latestTime","[]")
+        latestTimeArray=[]
+        latestTimeArray.push(`${minutes}:${seconds}`);
+        localStorage.setItem("latestTime", JSON.stringify(latestTimeArray));
+
+       
       } else {
         const isBestTime = latestTimeArray.every((time) => {
           const latMin = time.split(":")[0];
